@@ -4,13 +4,15 @@ import './index.css';
 import App from './App';
 import { ProductContextProvider } from './context/ProductContext';
 import { AuthContextProvider } from './context/AuthContext';
-
+import { SellerAuthContextProvider } from './context/SellerAuthContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AuthContextProvider>
-        <ProductContextProvider>
-            <App />
-        </ProductContextProvider>
-    </AuthContextProvider>
+    <SellerAuthContextProvider>
+        <AuthContextProvider>
+            <ProductContextProvider>
+                <App />
+            </ProductContextProvider>
+        </AuthContextProvider>
+    </SellerAuthContextProvider>
 );
 

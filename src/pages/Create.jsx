@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useProductContext } from '../hooks/useProductContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useSellerAuthContext } from '../hooks/useSellerAuthContext';
 const Create= ()=> {
-    const {user}=useAuthContext();
+    const {seller}=useSellerAuthContext();
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [image_url, setImage_url] = useState("");
@@ -15,12 +15,12 @@ const Create= ()=> {
         e.preventDefault();
 
         const product = { name, price, image_url, category };
-        const response = await fetch("/api/product", {
+        const response = await fetch("/api/seller/create", {
             method: "POST",
             body: JSON.stringify(product),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${seller.token}`
             }
         });
         const json = await response.json();
